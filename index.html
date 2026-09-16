@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Music Player</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2B2B2E">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAADcElEQVR4nO3d3XHTSgCAUXOHHtIBFAPlppl0AF3cBzMmBCfY+vRjrc55TGJFM/t5tSPt2J9+fPl2gqn+2/oE2DcBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIPm99Aofw9PJ89ec/v35f+UxmZwYiERCJS9hS3rtsDUZAMztINxcCmsHRonlNQNMduZsLAd1HNG8I6Ca6eY+A3iWaWwjoD6K5l4BOJ90Exw1INLM4XEC6mdchAhLNckYOSDcrGC0g0axskIB0s5UdB/T40Vw2HD7+qU6244Ae0wC7VO8ioBkcLZrXBDTRkaN5TUD30c0bAvo30XxAQNeJ5kYC+k00EwhIN8lBAxLNXA4UkGiWMHhAolnamAHpZjUDfriCetY0YECsSUAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhnzy1aW8/Ty/MFvD/g1HQK6ycfd/P1nxylJQP9wYzpXX3WEjAT0rmnp/H2EsTOyiL6u17PEoR6QgK4Ye8jnJaC31HMXAf1BPfcS0G/qmUBAJAL6xfQzjYBIBEQiIBKPMjYw0sMNMxCJgEgE9Mtql5WRrl+nx1kD2em3UxsH9FA7/X5+/b707cTx3gmbXcKeXp4njNa0V91u6UCXO/hWPv348m3lf/n47/IlznDIek7rz0C7eOQ0+2CPWs9p5YB2Uc/ZjEM+cD2nNRfRO6rn7Dzw5bTHTudspYB2V8/FtIyOkM7ZGgHtt56LSxDuV73xKDcS9+KAiXxs8UX0ANMPH/AsjERAJEOtgSxQ1mcGIhEQiYBIFg/ITr+xmYFI1ghohbnB9LOVlWYgO/1Gtd4lbKFhVs+2Vl0D2ek3nrUX0Xb6DWaDTfVndvqNYbOAzuz027uNA7qw02+nHiUgdsqdaBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBI/ge+Aq/3SE6yZQAAAABJRU5ErkJggg==">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAADcElEQVR4nO3d3XHTSgCAUXOHHtIBFAPlppl0AF3cBzMmBCfY+vRjrc55TGJFM/t5tSPt2J9+fPl2gqn+2/oE2DcBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIPm99Aofw9PJ89ec/v35f+UxmZwYiERCJS9hS3rtsDUZAMztINxcCmsHRonlNQNMduZsLAd1HNG8I6Ca6eY+A3iWaWwjoD6K5l4BOJ90Exw1INLM4XEC6mdchAhLNckYOSDcrGC0g0axskIB0s5UdB/T40Vw2HD7+qU6244Ae0wC7VO8ioBkcLZrXBDTRkaN5TUD30c0bAvo30XxAQNeJ5kYC+k00EwhIN8lBAxLNXA4UkGiWMHhAolnamAHpZjUDfriCetY0YECsSUAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhnzy1aW8/Ty/MFvD/g1HQK6ycfd/P1nxylJQP9wYzpXX3WEjAT0rmnp/H2EsTOyiL6u17PEoR6QgK4Ye8jnJaC31HMXAf1BPfcS0G/qmUBAJAL6xfQzjYBIBEQiIBKPMjYw0sMNMxCJgEgE9Mtql5WRrl+nx1kD2em3UxsH9FA7/X5+/b707cTx3gmbXcKeXp4njNa0V91u6UCXO/hWPv348m3lf/n47/IlznDIek7rz0C7eOQ0+2CPWs9p5YB2Uc/ZjEM+cD2nNRfRO6rn7Dzw5bTHTudspYB2V8/FtIyOkM7ZGgHtt56LSxDuV73xKDcS9+KAiXxs8UX0ANMPH/AsjERAJEOtgSxQ1mcGIhEQiYBIFg/ITr+xmYFI1ghohbnB9LOVlWYgO/1Gtd4lbKFhVs+2Vl0D2ek3nrUX0Xb6DWaDTfVndvqNYbOAzuz027uNA7qw02+nHiUgdsqdaBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBI/ge+Aq/3SE6yZQAAAABJRU5ErkJggg==">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <input type="file" id="fileInput" accept="audio/*" multiple hidden>
+
+  <div class="topbar">
+    <button id="addBtn" class="icon-btn" title="Agregar canciones">＋</button>
+    <span id="songCount" class="song-count"></span>
+  </div>
+
+  <div class="cover">
+    <svg viewBox="0 0 24 24" width="90" height="90" fill="white">
+      <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
+    </svg>
+  </div>
+
+  <div class="track-info">
+    <h2 id="songTitle">Agregá tus canciones</h2>
+    <p id="songArtist"></p>
+  </div>
+
+  <div class="mode-row">
+    <button id="shuffleBtn" class="icon-btn small" title="Aleatorio">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M14.83 13.41l1.41-1.41L20.66 16.4 16.24 20.83l-1.41-1.41L17.41 17H14v-2h3.41zM3 6h5.86l6 12H21v-2h-4.86l-6-12H3z"/></svg>
+    </button>
+    <button id="repeatBtn" class="icon-btn small" title="Repetir">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
+    </button>
+  </div>
+
+  <div class="progress-row">
+    <input type="range" id="seek" min="0" max="100" value="0" step="0.1">
+  </div>
+  <div class="time-row">
+    <span id="currentTime">0:00</span>
+    <span id="duration">0:00</span>
+  </div>
+
+  <div class="controls">
+    <button id="prevBtn" class="icon-btn big" title="Anterior">
+      <svg viewBox="0 0 24 24" width="30" height="30"><path fill="currentColor" d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+    </button>
+    <button id="playBtn" class="play-btn" title="Reproducir">
+      <svg id="playIcon" viewBox="0 0 24 24" width="34" height="34"><path fill="white" d="M8 5v14l11-7z"/></svg>
+    </button>
+    <button id="nextBtn" class="icon-btn big" title="Siguiente">
+      <svg viewBox="0 0 24 24" width="30" height="30"><path fill="currentColor" d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg>
+    </button>
+  </div>
+
+  <ul id="playlist" class="playlist"></ul>
+
+</div>
+
+<audio id="audio"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
