@@ -1,0 +1,40 @@
+name: Extraer zip
+
+on:
+  push:
+    paths:
+      - '*.zip'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extraer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Descomprimir el zip y limpiar
+        run: |
+          for z in *.zip; do
+            [ -e "$z" ] || continue
+            echo "Descomprimiendo $z"
+            unzip -o "$z" -d _extraido
+            rm "$z"
+          done
+          inner=$(find _extraido -mindepth 1 -maxdepth 1 -type d | head -n 1)
+          if [ -n "$inner" ]; then
+            cp -r "$inner"/. .
+          else
+            cp -r _extraido/. .
+          fi
+          rm -rf _extraido
+
+      - name: Commit de los archivos extraídos
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git diff --staged --quiet || git commit -m "Extraer zip automáticamente"
+          git push
